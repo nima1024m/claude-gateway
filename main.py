@@ -34,7 +34,7 @@ def verify_api_key(x_api_key: str = Header(...)):
 async def invoke_claude(prompt: str):
     async with semaphore:
         process = await asyncio.create_subprocess_exec(
-            "claude", "-p", prompt, "--output-format", "text",
+            "claude", "-p", prompt, "--output-format", "text", "--tools", "none",
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
         )
